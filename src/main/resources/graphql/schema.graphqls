@@ -2,6 +2,9 @@ type Query {
     bookById(id: ID): Book
     searchBook(filter: BookFilter): [Book!]
 }
+type Subscription {
+    bookSubscription: Book
+}
 
 type Book {
     id: ID
