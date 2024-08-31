@@ -1,5 +1,6 @@
 type Query {
     bookById(id: ID): Book
+    searchBook(filter: BookFilter): [Book!]
 }
 
 type Book {
@@ -13,4 +14,27 @@ type Author {
     id: ID
     firstName: String
     lastName: String
+}
+
+# Define filter input
+input BookFilter {
+    name: StringExpression
+    and: [BookFilter!]
+    or: [BookFilter!]
+    not: BookFilter
+}
+
+# Define String expression
+input StringExpression {
+    eq: String
+    contains: String
+}
+
+# Define Int Expression
+input IntExpression {
+    eq: Int
+    gt: Int
+    gte: Int
+    lt: Int
+    lte: Int
 }
