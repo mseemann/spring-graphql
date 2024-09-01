@@ -29,7 +29,7 @@ public class BookController {
     @SubscriptionMapping
     public Flux<Book> bookSubscription() {
         Random random = new Random();
-        return Flux.interval(Duration.ofSeconds(1))
+        return Flux.interval(Duration.ZERO, Duration.ofSeconds(1))
             .map(num -> Book.getById("book-" + (random.nextInt(4) + 1)));
     }
 //    @SchemaMapping
