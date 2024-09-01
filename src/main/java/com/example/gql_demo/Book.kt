@@ -1,27 +1,27 @@
-package com.example.gql_demo;
+package com.example.gql_demo
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*
 
-public record Book(String id, String name, int pageCount, String authorId) {
+data class Book(val id: String, val name: String, val pageCount: Int, @JvmField val authorId: String) {
+    companion object {
+        private val BOOKS: List<Book?> = Arrays.asList(
+            Book("book-1", "Effective Java", 416, "author-1"),
+            Book("book-2", "Hitchhiker's Guide to the Galaxy", 208, "author-2"),
+            Book("book-3", "Down Under", 436, "author-3"),
+            Book("book-4", "Effective Kotlin", 436, "author-1")
+        )
+        
+        fun getById(id: String): Book? {
+            return BOOKS.stream()
+                .filter { book: Book? -> book!!.id == id }
+                .findFirst()
+                .orElse(null)
+        }
 
-    private static List<Book> BOOKS = Arrays.asList(
-        new Book("book-1", "Effective Java", 416, "author-1"),
-        new Book("book-2", "Hitchhiker's Guide to the Galaxy", 208, "author-2"),
-        new Book("book-3", "Down Under", 436, "author-3"),
-        new Book("book-4", "Effective Kotlin", 436, "author-1")
-    );
-
-    public static Book getById(String id) {
-        return BOOKS.stream()
-            .filter(book -> book.id().equals(id))
-            .findFirst()
-            .orElse(null);
-    }
-
-    public static List<Book> byFilter(BookFilter filter) {
-        System.out.println("filter: " + filter);
-        return BOOKS.stream()
-            .filter(book -> book.name().contains(filter.name().contains())).toList();
+        fun byFilter(filter: BookFilter): List<Book?> {
+            println("filter: $filter")
+            return BOOKS.stream()
+                .filter { book: Book? -> book!!.name.contains(filter.name!!.contains!!) }.toList()
+        }
     }
 }

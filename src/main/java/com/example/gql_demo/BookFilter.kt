@@ -1,13 +1,10 @@
-package com.example.gql_demo;
-
-import java.util.List;
+package com.example.gql_demo
 
 // inspired by https://github.com/intuit/graphql-filter-java
-public record BookFilter(
-    StringExpression name,
-    List<BookFilter> and,
-    List<BookFilter> or,
-    List<BookFilter> not
-) {
-}
+data class BookFilter(
+    val name: StringExpression?,
+    val and: List<BookFilter>?,
+    val or: List<BookFilter>?,
+    val not: List<BookFilter>?
+)
 

@@ -1,13 +1,12 @@
-package com.example.gql_demo;
+package com.example.gql_demo
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.SpringApplication
+import org.springframework.boot.autoconfigure.SpringBootApplication
 
 @SpringBootApplication
-public class GqlDemoApplication {
+open class GqlDemoApplication
 
-    public static void main(String[] args) {
-        SpringApplication.run(GqlDemoApplication.class, args);
-    }
-
+fun main(args: Array<String>) {
+    SpringApplication.run(GqlDemoApplication::class.java, *args)
 }
+

@@ -1,21 +1,21 @@
-package com.example.gql_demo;
+package com.example.gql_demo
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*
 
-public record Author(String id, String firstName, String lastName) {
-
-    private static final List<Author> AUTHORS = Arrays.asList(
-        new Author("author-1", "Joshua", "Bloch"),
-        new Author("author-2", "Douglas", "Adams"),
-        new Author("author-3", "Bill", "Bryson")
-    );
-
-    public static Author getById(String id) {
-        System.out.printf("Author.getById(%s)%n", id);
-        return AUTHORS.stream()
-            .filter(author -> author.id().equals(id))
-            .findFirst()
-            .orElse(null);
+data class Author(val id: String, val firstName: String, val lastName: String) {
+    companion object {
+        private val AUTHORS: List<Author?> = Arrays.asList(
+            Author("author-1", "Joshua", "Bloch"),
+            Author("author-2", "Douglas", "Adams"),
+            Author("author-3", "Bill", "Bryson")
+        )
+        
+        fun getById(id: String): Author? {
+            System.out.printf("Author.getById(%s)%n", id)
+            return AUTHORS.stream()
+                .filter { author: Author? -> author!!.id == id }
+                .findFirst()
+                .orElse(null)
+        }
     }
 }
